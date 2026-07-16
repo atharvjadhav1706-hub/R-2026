@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NATIONAL ELIGIBILITY CUM ENTRANCE TEST (UG) – 2026</title>
+    <style>
+        /* --- DYNAMIC CSS VARIABLES (For Text Resizing) --- */
+        :root {
+            --text-scale: 1;
+            --font-xs: calc(12px * var(--text-scale));
+            --font-sm: calc(13px * var(--text-scale));
+            --font-base: calc(15px * var(--text-scale));
+            --font-md: calc(16px * var(--text-scale));
+            --font-lg: calc(20px * var(--text-scale));
+            --font-xl: calc(22px * var(--text-scale));
+            --font-xxl: calc(26px * var(--text-scale));
+            
+            --primary-blue: #004b87;
+            --primary-blue-hover: #003666;
+            --accent-orange: #f59e0b;
+        }
+
+        /* --- GLOBAL & RESET STYLES --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            color: #334155;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; 
+            overflow-x: hidden;
+            font-size: var(--font-base);
+            transition: font-size 0.3s ease;
+        }
+
+        /* --- OFFICIAL TOP UTILITY BAR --- */
+        .top-bar {
+            background-color: #0f172a;
+            color: #cbd5e1;
+            font-size: var(--font-xs);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 10%;
+            font-weight: 500;
+            flex-wrap: wrap; /* Helps on mobile */
+            gap: 10px;
+        }
+        .top-bar-left span, .top-bar-right span {
+            margin-right: 15px;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            white-space: nowrap;
+        }
+        .top-bar-right span:last-child { margin-right: 0; }
+        .top-bar-left span:hover, .top-bar-right span:hover { color: #ffffff; }
+
+        /* --- MAIN HEADER (Upgraded to CSS Grid for flawless scaling) --- */
+        .main-header {
+            background-color: #ffffff;
+            padding: 15px 10%;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr; /* Left logo, Center text, Right logo */
+            align-items: center;
+            border-bottom: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            z-index: 10;
+        }
+        .logo-area { display: flex; justify-content: flex-start; }
+        .logo-img { width: 100%; max-width: 298px; height: auto; object-fit: contain; }
+        
+        .header-titles { text-align: center; padding: 0 15px; }
+        .header-titles h1 {
+            font-size: var(--font-xxl);
+            color: #1e293b; 
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 800;
+            transition: font-size 0.3s ease;
+            margin: 0;
+            line-height: 1.2;
+        }
+        
+        .logo-area-right { display: flex; justify-content: flex-end; }
+        .logo-img-right { width: 100%; max-width: 141px; height: auto; object-fit: contain; }
+        
+        /* --- NAVIGATION BAR (Swipeable on Mobile) --- */
+        .navbar {
+            background-color: #F6F3EE; 
+            height: 48px; 
+            padding: 0 10%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+            border-bottom: 1px solid #e5e7eb;
+            z-index: 9;
+        }
+        .navbar a {
+            color: #334155; 
+            text-decoration: none;
+            padding: 0 28px;
+            line-height: 48px; 
+            font-size: calc(var(--font-sm) + 1px); 
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border-right: 1px solid #e2e8f0;
+            white-space: nowrap; /* Prevents text from breaking into two lines */
+        }
+        .navbar a:first-child { border-left: 1px solid #e2e8f0; }
+        
+        .navbar a:hover {
+            background-color: #dbe4ee;
+            color: var(--primary-blue);
+        }
+        .navbar a.active {
+            background-color: var(--primary-blue);
+            color: #ffffff;
+        }
+
+        /* --- MAIN CONTENT AREA --- */
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 20px;
+        }
+
+        /* --- UNIFIED CARD CONTAINER --- */
+        .unified-container {
+            background-color: #ffffff;
+            padding: 40px 50px;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06), 0 4px 6px rgba(0, 0, 0, 0.04);
+            width: 100%;
+            max-width: 600px;
+            min-height: 520px; 
+            border-top: 5px solid var(--primary-blue);
+            display: none; 
+            animation: fadeIn 0.4s ease-out forwards;
+            position: relative;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .unified-container h2 {
+            text-align: center; 
+            color: #1e293b;
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-size: var(--font-xl);
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 15px;
+            font-weight: 800;
+        }
+        .page-body { color: #475569; line-height: 1.7; }
+
+        /* --- ABOUT US FORMATTING --- */
+        .about-intro { margin-bottom: 20px; text-align: justify; }
+        .about-points { margin: 20px 0; padding-left: 20px; list-style-type: none; }
+        .about-points li { margin-bottom: 15px; position: relative; padding-left: 15px; }
+        .about-points li::before {
+            content: '•';
+            color: var(--accent-orange);
+            font-size: var(--font-lg);
+            position: absolute;
+            left: -10px;
+            top: -2px;
+        }
+        .about-points li strong { color: var(--primary-blue); font-weight: 700; }
+        .highlight-conclusion {
+            background-color: #f8fafc;
+            border-left: 4px solid var(--accent-orange); 
+            padding: 18px 22px;
+            margin-top: 30px;
+            color: #1e293b;
+            border-radius: 0 6px 6px 0;
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        /* --- TABLE STYLES --- */
+        .table-responsive { width: 100%; overflow-x: auto; }
+        .contact-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            min-width: 400px; /* Forces scroll on very tiny phones instead of squishing */
+        }
+        .contact-table th { background-color: #f8fafc; color: #0f172a; font-weight: 700; border-bottom: 1px solid #e2e8f0; }
+        .contact-table th, .contact-table td { padding: 16px; text-align: left; vertical-align: middle; }
+        .contact-table td:first-child, .contact-table th:first-child { border-right: 1px solid #e2e8f0; }
+        
+        /* --- FORM STYLES --- */
+        .form-group { margin-bottom: 20px; }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #475569;
+            font-size: var(--font-sm);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .required-asterisk { color: #ef4444; }
+        .form-group input {
+            width: 100%;
+            padding: 14px 15px; /* Increased padding for better mobile touch area */
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: var(--font-base);
+            color: #1e293b;
+            background-color: #f8fafc;
+            transition: all 0.3s ease;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(0, 75, 135, 0.15);
+        }
+        
+        /* --- CAPTCHA STYLES --- */
+        .captcha-wrapper { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; flex-wrap: wrap; }
+        .captcha-box {
+            background-color: #f1f5f9;
+            border: 1px dashed #cbd5e1;
+            padding: 12px;
+            text-align: center;
+            font-weight: 900;
+            letter-spacing: 6px;
+            border-radius: 6px;
+            user-select: none;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: var(--font-lg);
+            color: #0f172a;
+            flex-grow: 1;
+            min-width: 150px;
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.03) 10px, rgba(0,0,0,0.03) 20px); 
+        }
+        .btn-refresh {
+            background-color: #64748b;
+            color: white;
+            border: none;
+            padding: 0 18px;
+            height: 52px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: var(--font-lg);
+            transition: background-color 0.2s, transform 0.1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-refresh:hover { background-color: #475569; }
+        .btn-refresh:active { transform: scale(0.95); }
+
+        /* --- BUTTONS --- */
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: var(--font-md);
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            box-shadow: 0 4px 6px rgba(0, 75, 135, 0.2);
+        }
+        .btn-submit:hover { 
+            background-color: var(--primary-blue-hover); 
+            box-shadow: 0 6px 10px rgba(0, 75, 135, 0.3);
+            transform: translateY(-1px);
+        }
+        .btn-submit:disabled { 
+            background-color: #94a3b8; cursor: not-allowed; box-shadow: none; transform: none;
+        }
+        
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid #ffffff;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+            display: none;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* --- LINKS & ALERTS --- */
+        .links { margin-top: 25px; text-align: center; font-size: var(--font-sm); }
+        .links a { color: var(--primary-blue); text-decoration: none; cursor: pointer; font-weight: 700; transition: color 0.2s;}
+        .links a:hover { color: var(--accent-orange); text-decoration: underline; }
+        
+        .error-message { color: #ef4444; font-size: var(--font-sm); margin-top: 8px; display: none; font-weight: 700; }
+        .login-error {
+            background-color: #fef2f2; color: #b91c1c; border: 1px solid #fecaca;
+            padding: 12px; border-radius: 6px; text-align: center; margin-bottom: 25px; font-weight: 600;
+        }
+        .traffic-error {
+            color: #b91c1c; background-color: #fef2f2; border: 1px solid #fecaca;
+            padding: 20px; border-radius: 6px; line-height: 1.6; text-align: center; margin-bottom: 20px;
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            background-color: #0f172a; color: #94a3b8; text-align: center;
+            padding: 25px 10%; font-size: var(--font-sm); line-height: 1.8;
+            border-top: 3px solid var(--primary-blue);
+        }
+        .footer a { color: #f8fafc; text-decoration: none; font-weight: 600;}
+        .footer a:hover { text-decoration: underline; color: var(--accent-orange); }
+
+        /* ============================================================== */
+        /* --- RESPONSIVE MOBILE MEDIA QUERIES (THE "MAGIC" PART) ---     */
+        /* ============================================================== */
+        @media (max-width: 850px) {
+            /* 1. Header auto-switches to vertically stacked */
+            .main-header {
+                grid-template-columns: 1fr;
+                gap: 18px;
+                padding: 20px 5%;
+            }
+            .logo-area, .logo-area-right { justify-content: center; }
+            .header-titles h1 { font-size: var(--font-xl); }
+            
+            /* 2. Nav Menu becomes a swipeable horizontal scrolling app-like menu */
+            .navbar {
+                padding: 0;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+                scrollbar-width: none; /* Hide scrollbar Firefox */
+            }
+            .navbar::-webkit-scrollbar { display: none; } /* Hide scrollbar Chrome/Safari */
+            .navbar a {
+                padding: 0 20px;
+                border-right: none;
+                flex: 0 0 auto; /* Prevents items from squishing together */
+            }
+            .navbar a:first-child { border-left: none; }
+            .navbar a.active { border-bottom: 3px solid var(--accent-orange); } /* Visually better on mobile */
+
+            /* 3. Top bar centers and stacks */
+            .top-bar { justify-content: center; text-align: center; }
+            
+            /* 4. Container shrinks padding to fit small screens */
+            .main-content { padding: 25px 15px; }
+            .unified-container {
+                padding: 30px 25px;
+                min-height: auto; /* Allow auto height on mobile */
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .unified-container { padding: 25px 15px; }
+            .captcha-wrapper { flex-direction: column; align-items: stretch; }
+            .btn-refresh { height: 44px; } /* Slightly shorter button for vertical stack */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP UTILITY BAR -->
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <span>GOVERNMENT OF INDIA</span>
+        </div>
+        <div class="top-bar-right">
+            <span onclick="skipToMainContent()" title="Skip to login area">Skip to main content</span>
+            <span onclick="setTextScale(0.9)" title="Decrease text size">A-</span>
+            <span onclick="setTextScale(1.0)" title="Normal text size">A</span>
+            <span onclick="setTextScale(1.1)" title="Increase text size">A+</span>
+        </div>
+    </div>
+
+    <!-- MAIN HEADER -->
+    <div class="main-header">
+        <div class="logo-area">
+            <img src="LOGO.jpeg" alt="State Emblem" class="logo-img" onerror="this.style.display='none'">
+        </div>
+        <div class="header-titles">
+            <h1>NATIONAL ELIGIBILITY CUM ENTRANCE TEST (UG) – 2026</h1>
+        </div>
+        <div class="logo-area-right">
+            <img src="logo2.png" alt="Secondary Logo" class="logo-img-right" onerror="this.style.display='none'">
+        </div>
+    </div>
+
+    <!-- NAVIGATION BAR (Swipeable on Mobile) -->
+    <div class="navbar" id="navMenu">
+        <a id="navHome" class="active" onclick="switchView('home')">Home</a>
+        <a id="navAbout" onclick="switchView('about')">About Us</a>
+        <a id="navFaq" onclick="switchView('faq')">FAQ</a>
+        <a id="navContact" onclick="switchView('contact')">Contact Us</a>
+    </div>
+
+    <!-- MAIN CONTENT AREA -->
+    <div class="main-content">
+        
+        <!-- ============================================== -->
+        <!-- VIEW 1: HOME (LOGIN & FORGOT PASSWORD)         -->
+        <!-- ============================================== -->
+        <div id="view-home" class="unified-container" style="display: block;">
+            
+            <!-- Login Box -->
+            <div id="loginBox">
+                <h2>Candidate Login</h2>
+                <div id="loginError" class="error-message login-error">Invalid Roll Number or Password.</div>
+                
+                <form id="mockForm">
+                    <div class="form-group">
+                        <label for="rollNo">Roll Number <span class="required-asterisk">*</span></label>
+                        <input type="text" id="rollNo" required placeholder="Enter your registered Roll No">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password <span class="required-asterisk">*</span></label>
+                        <input type="password" id="password" required placeholder="Enter your secure password">
+                    </div>
+
+                    <div class="captcha-wrapper">
+                        <div class="captcha-box" id="captchaDisplay"></div>
+                        <button type="button" class="btn-refresh" id="refreshCaptcha" title="Get a new Captcha">↻</button>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="captcha">Enter Captcha <span class="required-asterisk">*</span></label>
+                        <input type="text" id="captcha" required placeholder="Type the text shown above">
+                        <div id="captchaError" class="error-message">Incorrect Captcha. Please try again.</div>
+                    </div>
+
+                    <button type="submit" class="btn-submit" id="submitBtn">
+                        <div class="spinner" id="spinner"></div>
+                        <span id="btnText">Secure Login</span>
+                    </button>
+                </form>
+
+                <div class="links">
+                    <a id="forgotPasswordLink">Forgot your password? Click here to reset.</a>
+                </div>
+            </div>
+
+            <!-- Forgot Password Box -->
+            <div id="forgotPasswordBox" style="display: none;">
+                <h2>Forgot Password</h2>
+                <div id="fpFormSection">
+                    <form id="fpForm">
+                        <div class="form-group">
+                            <label for="appNo">Application Number <span class="required-asterisk">*</span></label>
+                            <input type="text" id="appNo" required placeholder="Enter Application Number">
+                        </div>
+                        <div class="form-group">
+                            <label for="dob">Date of Birth <span class="required-asterisk">*</span></label>
+                            <input type="date" id="dob" required>
+                        </div>
+                        <div class="captcha-wrapper">
+                            <div class="captcha-box" id="captchaDisplayFP"></div>
+                            <button type="button" class="btn-refresh" id="refreshCaptchaFP" title="Get a new Captcha">↻</button>
+                        </div>
+                        <div class="form-group">
+                            <label for="captchaFP">Enter Captcha <span class="required-asterisk">*</span></label>
+                            <input type="text" id="captchaFP" required placeholder="Type the text shown above">
+                            <div id="captchaErrorFP" class="error-message">Incorrect Captcha. Please try again.</div>
+                        </div>
+                        <button type="submit" class="btn-submit" id="sendCodeBtn">Send Reset Link</button>
+                    </form>
+                    <div class="links">
+                        <a id="backToLoginLink">← Back to Candidate Login</a>
+                    </div>
+                </div>
+
+                <div id="trafficErrorSection" style="display: none;">
+                    <div class="traffic-error">
+                        <strong>Notice:</strong> Due to heavy traffic, this facility is temporarily unavailable. Please check after some time.
+                    </div>
+                    <button type="button" class="btn-submit" id="okBtn">Return to Home</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- VIEW 2: ABOUT US                               -->
+        <!-- ============================================== -->
+        <div id="view-about" class="unified-container">
+            <h2>About Us</h2>
+            <div class="page-body">
+                <p class="about-intro">
+                    <!-- ============================================================== -->
+                    <!-- ADD YOUR INTRODUCTORY / FIRST BODY TEXT HERE                   -->
+                    <!-- ============================================================== -->
+                    [REPLACE THIS TEXT: Write your introductory paragraph here. It will adapt perfectly on mobile phones.]
+                </p>
+                <ul class="about-points">
+                    <li>
+                        <strong>Point 1:</strong> 
+                        <!-- ============================================================== -->
+                        <!-- ADD YOUR 1ST POINT DETAIL HERE                                 -->
+                        <!-- ============================================================== -->
+                        [REPLACE THIS TEXT: Details regarding admission or your first point]
+                    </li>
+                    <li>
+                        <strong>Point 2:</strong> 
+                        <!-- ============================================================== -->
+                        <!-- ADD YOUR 2ND POINT DETAIL HERE                                 -->
+                        <!-- ============================================================== -->
+                        [REPLACE THIS TEXT: Details regarding steps for bridging them or your second point]
+                    </li>
+                    <li>
+                        <strong>Point 3:</strong> 
+                        <!-- ============================================================== -->
+                        <!-- ADD YOUR 3RD POINT DETAIL HERE                                 -->
+                        <!-- ============================================================== -->
+                        [REPLACE THIS TEXT: Your third point text goes here]
+                    </li>
+                </ul>
+                <div class="highlight-conclusion">
+                    <!-- ============================================================== -->
+                    <!-- ADD YOUR FINAL CONCLUDING STATEMENT / REST OF BODY HERE        -->
+                    <!-- ============================================================== -->
+                    [REPLACE THIS TEXT: Add your final concluding statement or rest of the body here. The box will automatically adjust.]
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- VIEW 3: FAQ                                    -->
+        <!-- ============================================== -->
+        <div id="view-faq" class="unified-container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="page-body" style="text-align: center; padding-top: 60px;">
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 15px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                <p><strong>No Documents found.</strong><br><span style="color: #94a3b8; display: inline-block; margin-top: 5px;">FAQs will be updated here shortly.</span></p>
+            </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- VIEW 4: CONTACT US                             -->
+        <!-- ============================================== -->
+        <div id="view-contact" class="unified-container">
+            <h2>Contact Us</h2>
+            <div class="page-body">
+                <p style="margin-bottom: 20px;">If you have any queries, please reach out to us using the details provided below:</p>
+                <div class="table-responsive">
+                    <table class="contact-table">
+                        <tr>
+                            <th style="width: 50%;">Email Address</th>
+                            <th style="width: 50%;">Contact Number</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <!-- ============================================================== -->
+                                <!-- ADD YOUR EMAIL ADDRESS HERE                                    -->
+                                <!-- ============================================================== -->
+                                [REPLACE THIS TEXT WITH EMAIL ADDRESS]
+                            </td>
+                            <td>
+                                <!-- ============================================================== -->
+                                <!-- ADD YOUR CONTACT NUMBER HERE                                   -->
+                                <!-- ============================================================== -->
+                                [REPLACE THIS TEXT WITH CONTACT NUMBER]
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- OFFICIAL FOOTER -->
+    <div class="footer">
+        <p>This site is designed and hosted by National Informatics Centre (NIC).<br>
+        Contents provided and maintained by the Central Examination Board.</p>
+        <p style="margin-top: 10px;">&copy; 2026 All Rights Reserved | <a href="#">Terms & Conditions</a> | <a href="#">Privacy Policy</a></p>
+    </div>
+
+    <script>
+        // --- TEXT SCALER (A-, A, A+) ---
+        function setTextScale(scaleValue) {
+            document.documentElement.style.setProperty('--text-scale', scaleValue);
+        }
+
+        // --- SKIP TO MAIN CONTENT ---
+        function skipToMainContent() {
+            switchView('home');
+            setTimeout(() => {
+                const rollInput = document.getElementById('rollNo');
+                rollInput.focus();
+                rollInput.style.boxShadow = '0 0 0 4px rgba(245, 158, 11, 0.4)';
+                setTimeout(() => { rollInput.style.boxShadow = ''; }, 800);
+            }, 50);
+        }
+
+        // --- NAVIGATION LOGIC ---
+        function switchView(viewName) {
+            // Hide all views
+            document.getElementById('view-home').style.display = 'none';
+            document.getElementById('view-about').style.display = 'none';
+            document.getElementById('view-faq').style.display = 'none';
+            document.getElementById('view-contact').style.display = 'none';
+
+            // Remove 'active' class
+            document.getElementById('navHome').classList.remove('active');
+            document.getElementById('navAbout').classList.remove('active');
+            document.getElementById('navFaq').classList.remove('active');
+            document.getElementById('navContact').classList.remove('active');
+
+            // Show selected view
+            if(viewName === 'home') {
+                document.getElementById('view-home').style.display = 'block';
+                document.getElementById('navHome').classList.add('active');
+                document.getElementById('loginBox').style.display = 'block';
+                document.getElementById('forgotPasswordBox').style.display = 'none';
+            } else {
+                document.getElementById('view-' + viewName).style.display = 'block';
+                document.getElementById('nav' + viewName.charAt(0).toUpperCase() + viewName.slice(1)).classList.add('active');
+            }
+        }
+
+        // --- CAPTCHA GENERATION LOGIC ---
+        function generateRandomCaptchaStr() {
+            const chars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789";
+            let captcha = "";
+            for (let i = 0; i < 6; i++) {
+                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return captcha;
+        }
+
+        // --- LOGIN VIEW LOGIC ---
+        let currentCaptchaTextLogin = "";
+
+        function generateLoginCaptcha() {
+            currentCaptchaTextLogin = generateRandomCaptchaStr();
+            document.getElementById('captchaDisplay').innerText = currentCaptchaTextLogin.split('').join(' ');
+            document.getElementById('captchaError').style.display = 'none';
+        }
+
+        document.getElementById('refreshCaptcha').addEventListener('click', function() {
+            generateLoginCaptcha();
+            document.getElementById('captcha').value = '';
+            document.getElementById('captcha').focus(); 
+        });
+
+        document.getElementById('mockForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            
+            const userInput = document.getElementById('captcha').value;
+            const rollNoInput = document.getElementById('rollNo').value;
+            const passwordInput = document.getElementById('password').value;
+            
+            const captchaErrorMessage = document.getElementById('captchaError');
+            const loginErrorMessage = document.getElementById('loginError');
+
+            if (userInput.replace(/\s/g, '') !== currentCaptchaTextLogin) {
+                captchaErrorMessage.style.display = 'block';
+                loginErrorMessage.style.display = 'none'; 
+                generateLoginCaptcha();
+                document.getElementById('captcha').value = '';
+                return; 
+            }
+            captchaErrorMessage.style.display = 'none';
+
+            if (rollNoInput !== '260411931430' || passwordInput !== 'Atharv@aj17') {
+                loginErrorMessage.style.display = 'block';
+                document.getElementById('password').value = '';
+                generateLoginCaptcha();
+                document.getElementById('captcha').value = '';
+                return; 
+            }
+            loginErrorMessage.style.display = 'none';
+
+            const submitBtn = document.getElementById('submitBtn');
+            const spinner = document.getElementById('spinner');
+            const btnText = document.getElementById('btnText');
+
+            submitBtn.disabled = true;            
+            spinner.style.display = 'block';      
+            btnText.innerText = 'Authenticating...'; 
+
+            setTimeout(function() {
+                window.location.href = 'result1.pdf'; 
+            }, 3000); 
+        });
+
+
+        // --- FORGOT PASSWORD VIEW LOGIC ---
+        let currentCaptchaTextFP = "";
+
+        function generateFPCaptcha() {
+            currentCaptchaTextFP = generateRandomCaptchaStr();
+            document.getElementById('captchaDisplayFP').innerText = currentCaptchaTextFP.split('').join(' ');
+            document.getElementById('captchaErrorFP').style.display = 'none';
+        }
+
+        document.getElementById('refreshCaptchaFP').addEventListener('click', function() {
+            generateFPCaptcha();
+            document.getElementById('captchaFP').value = '';
+            document.getElementById('captchaFP').focus();
+        });
+
+        document.getElementById('forgotPasswordLink').addEventListener('click', function() {
+            document.getElementById('loginBox').style.display = 'none';
+            document.getElementById('forgotPasswordBox').style.display = 'block';
+            
+            document.getElementById('fpFormSection').style.display = 'block';
+            document.getElementById('trafficErrorSection').style.display = 'none';
+            document.getElementById('fpForm').reset();
+            generateFPCaptcha();
+        });
+
+        document.getElementById('backToLoginLink').addEventListener('click', function() {
+            document.getElementById('forgotPasswordBox').style.display = 'none';
+            document.getElementById('loginBox').style.display = 'block';
+            generateLoginCaptcha();
+        });
+
+        document.getElementById('fpForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const userInput = document.getElementById('captchaFP').value;
+            const captchaErrorMessageFP = document.getElementById('captchaErrorFP');
+
+            if (userInput.replace(/\s/g, '') !== currentCaptchaTextFP) {
+                captchaErrorMessageFP.style.display = 'block';
+                generateFPCaptcha();
+                document.getElementById('captchaFP').value = '';
+                return;
+            }
+            captchaErrorMessageFP.style.display = 'none';
+
+            document.getElementById('fpFormSection').style.display = 'none';
+            document.getElementById('trafficErrorSection').style.display = 'block';
+        });
+
+        document.getElementById('okBtn').addEventListener('click', function() {
+            document.getElementById('forgotPasswordBox').style.display = 'none';
+            document.getElementById('loginBox').style.display = 'block';
+            generateLoginCaptcha();
+            document.getElementById('mockForm').reset();
+        });
+
+        window.onload = function() {
+            generateLoginCaptcha();
+        };
+    </script>
+
+</body>
+</html>
